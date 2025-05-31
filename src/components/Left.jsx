@@ -6,6 +6,10 @@ const Left = ({ setIsCalculated, setResult }) => {
   const [rate, setRate] = useState("");
   const [mortgageType, setMortgageType] = useState("Repayment");
 
+  const handleClear = () => {
+    window.location.reload();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const loan = parseFloat(amount);
@@ -56,7 +60,9 @@ const Left = ({ setIsCalculated, setResult }) => {
     <form className="left_side" onSubmit={handleSubmit}>
       <div className="title">
         <h1>Mortgage Calculator</h1>
-        <p id="clear">Clear All</p>
+        <p id="clear" onClick={handleClear} style={{ cursor: "pointer" }}>
+          Clear All
+        </p>
       </div>
       <div className="morgtag-container">
         <div className="amount-container">
