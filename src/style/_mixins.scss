@@ -1,0 +1,14 @@
+@mixin center-flex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-simple() {
+  display: flex;
+  align-items: center;
+}
+
+$font-primary: "Plus Jakarta Sans", sans-serif;
+$font-weight-medium: 500;
+$font-weight-bold: 700;

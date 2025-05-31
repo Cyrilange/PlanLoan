@@ -1,0 +1,198 @@
+@use "mixins";
+@use "color";
+
+.left_side {
+  background-color: color.$color-white;
+  padding: 2rem;
+  flex: 1 1 50%;
+  min-width: 250px;
+  border-radius: 1.3rem;
+
+  @media (max-width: 600px) {
+    border-radius: 0.1rem;
+    padding: 1.5rem;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+
+    @media (max-width: 600px) {
+      margin-top: 4rem;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    #clear {
+      opacity: 50%;
+    }
+  }
+
+  .morgtag-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    @media (max-width: 600px) {
+      margin-top: 4rem;
+      gap: 2rem;
+    }
+
+    .amount-container {
+      display: flex;
+      flex-direction: column;
+      label {
+        opacity: 50%;
+        margin-bottom: 0.5rem;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        border: 1px solid color.$color-lime;
+        border-radius: 4px;
+        overflow: hidden;
+
+        .currency-symbol {
+          background-color: color.$color-lime;
+          padding: 0.6rem 1rem;
+          @include mixins.center-simple();
+          font-weight: bold;
+        }
+
+        #amount-id {
+          border: none;
+          padding: 0.5rem 1rem;
+          flex: 1;
+          outline: none;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .calcul-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+      label {
+        opacity: 50%;
+        margin-bottom: 0.5rem;
+      }
+      .row {
+        display: flex;
+        gap: 1rem;
+
+        .input-group {
+          display: flex;
+          align-items: center;
+          border: 1px solid color.$color-slate-300;
+          border-radius: 4px;
+          overflow: hidden;
+          input.amount-calc {
+            flex: 1;
+            min-width: 0;
+          }
+
+          span.symbol {
+            flex-shrink: 0;
+            white-space: nowrap;
+          }
+
+          .symbol {
+            background-color: color.$color-slate-300;
+            padding: 0.6rem 1rem;
+            @include mixins.center-simple();
+            font-weight: bold;
+            z-index: 111;
+          }
+
+          .amount-calc {
+            border: none;
+            padding: 0.5rem 1rem;
+            flex: 1;
+            outline: none;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    $type-color: color.$color-lime; // ta couleur verte
+
+    .lradio {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid color.$color-slate-300;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      cursor: pointer;
+      position: relative;
+
+      input[type="radio"] {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+        transition: border 0.2s;
+        background-color: white; // 👈 rend visible
+
+        z-index: 1; // 👈 s’assure qu’il reste au-dessus
+
+        &::before {
+          content: "";
+          display: block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: $type-color;
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+
+        &:checked {
+          border-color: $type-color;
+
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        font-size: 1rem;
+        z-index: 111;
+      }
+    }
+
+    .lradio:has(input[type="radio"]:checked) {
+      background-color: rgba($type-color, 0.2);
+      border: 1px solid $type-color;
+    }
+
+    button {
+      margin-top: 1rem;
+      background-color: color.$color-lime;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+    }
+  }
+}
